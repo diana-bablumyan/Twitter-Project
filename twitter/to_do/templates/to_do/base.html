@@ -1,0 +1,129 @@
+{% load static %}
+	<!DOCTYPE html>
+	<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To Do</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+	h3{
+	color: #374d65;
+	}
+
+	body{
+		background-color: #638CB8;
+	}
+
+	input{
+		width: 100%;
+		padding: 12px 20px;
+		margin: 8px 0;
+		box-sizing: border-box;
+	}
+
+	input::placeholder {
+	  color: #d3d3d3;
+	}
+
+	.submit{
+		background-color: #6BA3E8;
+	}
+
+	.center-column{
+		width:600px;
+		margin: 20px auto;
+		padding:20px;
+		background-color: #fff;
+		border-radius: 3px;
+		box-shadow: 6px 2px 30px 0px rgba(0,0,0,0.75);
+	}
+
+	.item-row{
+		background-color: #374d65;
+		margin: 10px;
+		padding: 20px;
+		border-radius: 3px;
+		color: #fff;
+		font-size: 16px;
+		box-shadow: 0px -1px 10px -4px rgba(0,0,0,0.75);
+	}
+	.item-row input,textarea{
+
+		color: black;
+
+	}
+
+	.btn-danger{
+		background-color: #ffae19;
+		border-color: #e59400;
+	}
+	a{
+	color: white;
+	}
+	a:hover {
+    color: white;
+    }
+    #sign_up{
+        color: #337ab7;
+        }
+    .navbar {
+        position: relative;
+        min-height: 50px;
+        margin-bottom: 0px;
+        border: 1px solid transparent;
+}
+
+</style>
+
+</head>
+
+
+	<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">To DO</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="{% url 'home' %}">Home</a></li>
+      <li class="active"><a href="#">Contact Us</a></li>
+        <form method="post" action="{% url 'search' %}">
+            {% csrf_token %}
+            <input type="search" placeholder="Search" aria-label="Search" name="searched">
+            <button type="submit">Search</button>
+        </form>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        {% if not request.user.is_authenticated %}
+          <li><a href="{% url 'register' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+          <li><a href="{% url 'user_login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        {% else %}
+            <li><a href="{% url 'profile' request.user.id %}"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+            <li><a href="{% url 'user_logout' %}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+        {% endif %}
+    </ul>
+  </div>
+</nav>
+      <div class="row">
+        <div class="col-md-12">
+          {% if messages %}
+          {% for message in messages %}
+          <div class="alert alert-{{ message.tags }}">
+          {{ message }}
+          </div>
+          {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+
+<body>
+
+<div class="center-column">
+	{% block content %}
+	{% endblock content %}
+
+</div>
+</body>
+</html>

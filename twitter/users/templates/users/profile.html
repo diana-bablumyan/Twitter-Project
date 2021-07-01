@@ -1,0 +1,11 @@
+<h3>{{profile.name}}</h3>
+
+<img src="{{profile.profile_image.url}}" alt="not found">
+
+<h3>{{profile.age}}</h3>
+
+        <div class="item-row">
+            <a href="{% url 'update_profile' profile.id %}">
+                <button class="btn btn-sm btn-success" type="submit">update</button>
+            </a>
+        </div>

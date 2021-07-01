@@ -1,0 +1,23 @@
+{% extends 'to_do/base.html' %}
+
+	{% block content %}
+
+	<center><h3>Retrieve Your Tweet</h3></center>
+	<h3>Retrieve tweet</h3>
+
+
+		<div class="item-row">
+
+		<h1>Tweet - {{ tweet.tweet }}</h1>
+		<h1>User -  {{ tweet.user}}</h1>
+		<h1>Datetime -  {{ tweet.date_create }}</h1>
+		</div>
+
+{#		<div class="item-row">#}
+{##}
+{#			<a class="btn btn-sm btn-info" href="{% url 'task_update' tweet.id %}">Update</a>#}
+{#			<a class="btn btn-sm btn-danger" href="{% url 'task_delete' tweet.id %}">Delete</a>#}
+{##}
+{#		</div>#}
+
+{% endblock content %}

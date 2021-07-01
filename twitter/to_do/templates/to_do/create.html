@@ -1,0 +1,29 @@
+{% extends 'to_do/base.html' %}
+{% block content %}
+
+<div class="todo-list">
+
+		<h3>Create tweet</h3>
+
+<form method="post">
+		<div class="item-row">
+            <h3>Create here</h3>
+
+                {% csrf_token %}
+            {{tweet_form.user.label}}
+            {{tweet_form.user}}
+            <br>
+            {{ tweet_form.tweet.label }}
+                <br>
+            {{ tweet_form.tweet }}
+
+		</div>
+
+        <div class="item-row">
+            <button class="btn btn-sm btn-success" type="submit">Create</button>
+        </div>
+
+        </form>
+	</div>
+
+    	{% endblock content %}

@@ -1,0 +1,27 @@
+{% extends 'to_do/base.html' %}
+{% block content %}
+
+
+	<div class="todo-list">
+
+		<h3>Tweets</h3>
+
+		{% for item in tweet_list %}
+            <br/>
+            <br/>
+            {{ item}}
+            <br/>
+            <br/>
+
+        {% endfor %}
+
+        </div>
+
+        <div class="item-row">
+
+        <a class="btn btn-sm btn-info" href="{% url 'create' %}">Create</a>
+        {{ task }}
+
+		</div>
+
+{% endblock content %}
